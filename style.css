@@ -1,0 +1,295 @@
+/* Dead Load Games: the "drawing sheet" look (mock-up A, chosen 17 Nov 2026). */
+
+:root {
+  --paper: #f4f1e8;
+  --ink: #1b1b1b;
+  --grid: rgba(40, 80, 150, 0.08);
+  --red: #c8241c;
+  --muted: #5a5850;
+  --rule: #c9c4b4;
+  --card: rgba(255, 255, 255, 0.55);
+  --todo: #fff09a;
+  --dimc: #2f62a8;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+a { color: inherit; }
+
+.sheet {
+  max-width: 1180px;
+  margin: 24px auto;
+  border: 3px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: 5px;
+  padding: 0 48px 40px;
+}
+
+/* Header */
+.top {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 28px;
+  border-bottom: 2px solid var(--ink);
+  padding: 28px 0 22px;
+}
+.wordmark {
+  font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 700;
+  font-size: 40px; line-height: 1.1; letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none;
+}
+.wordmark span { color: var(--red); }
+.top nav a {
+  font-family: "IBM Plex Mono", Consolas, monospace; font-size: 14px; letter-spacing: 0.12em;
+  text-decoration: none; margin-left: 28px; text-transform: uppercase;
+}
+.top nav a:first-child { margin-left: 0; }
+.top nav a:hover, .top nav a:focus-visible { color: var(--red); }
+
+/* The dimension line over the studio line */
+.dim { display: flex; align-items: center; margin: 44px 0 10px; }
+.dim .tick { width: 1px; height: 22px; background: var(--ink); }
+.dim .line { flex: 1; height: 1px; background: var(--ink); }
+.dim .label { padding: 0 16px; font-family: "IBM Plex Mono", Consolas, monospace; font-size: 15px; }
+.intro { text-align: center; font-size: 22px; margin: 0 0 8px; }
+
+/* Section headings: number, title, rule to the edge */
+h2 {
+  font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.1em; font-size: 26px; margin: 56px 0 18px;
+  display: flex; align-items: baseline; gap: 14px;
+}
+h2 .num { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 15px; color: var(--red); }
+h2::after { content: ""; flex: 1; border-bottom: 1px solid var(--ink); transform: translateY(-6px); }
+section { scroll-margin-top: 16px; }
+
+/* Game cards */
+.games { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+.card { border: 2px solid var(--ink); background: var(--card); display: flex; flex-direction: column; }
+.card .art {
+  display: block; width: 100%; height: auto; aspect-ratio: 920 / 430;
+  border-bottom: 2px solid var(--ink);
+}
+.card .body { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+.card .detail { margin: 0; font-family: "IBM Plex Mono", Consolas, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.1em; }
+.card h3 { font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 700; font-size: 28px; line-height: 1.2; margin: 4px 0 2px; letter-spacing: 0.02em; }
+.card .status { margin: 0 0 10px; font-family: "IBM Plex Mono", Consolas, monospace; font-size: 13px; color: var(--red); text-transform: uppercase; letter-spacing: 0.04em; }
+.card p { margin: 0 0 18px; font-size: 16px; }
+.card .buttons { margin: auto 0 0; }
+
+/* Buttons */
+.btn {
+  display: inline-block; font-family: "IBM Plex Mono", Consolas, monospace; font-weight: 600; font-size: 14px;
+  letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+  padding: 10px 16px; border: 2px solid var(--ink); color: var(--paper); background: var(--ink);
+  margin: 0 10px 8px 0;
+}
+.btn:hover, .btn:focus-visible { background: var(--red); border-color: var(--red); }
+.btn.alt { background: transparent; color: var(--ink); }
+.btn.alt:hover, .btn.alt:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+/* About, press, contact */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+.box { border: 1px solid var(--ink); padding: 18px 22px; background: rgba(255, 255, 255, 0.45); }
+.box p { margin: 0 0 12px; }
+.box p:last-child { margin-bottom: 0; }
+.facts { width: 100%; border-collapse: collapse; font-size: 15px; }
+.facts th, .facts td { border-bottom: 1px solid var(--rule); padding: 7px 0; vertical-align: top; text-align: left; font-weight: 400; }
+.facts td { overflow-wrap: anywhere; }
+.facts th {
+  font-family: "IBM Plex Mono", Consolas, monospace; font-size: 13px; color: var(--muted);
+  width: 34%; text-transform: uppercase; letter-spacing: 0.06em; padding-right: 12px;
+}
+.facts a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.facts a:hover { color: var(--red); }
+/* Shows the @ on screen without it appearing in the page's code (spam bots). */
+.email .at::before { content: "@"; }
+.box .btn { margin-top: 18px; }
+
+/* Title block footer, like the corner of a drawing */
+.titleblock {
+  margin-top: 56px; display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; border: 2px solid var(--ink);
+  font-family: "IBM Plex Mono", Consolas, monospace; font-size: 13px;
+}
+.titleblock div { padding: 10px 14px; border-left: 1px solid var(--ink); }
+.titleblock div:first-child { border-left: none; }
+.titleblock small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 0.12em; }
+.titleblock b { font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 18px; letter-spacing: 0.08em; font-weight: 500; }
+
+/* Dimension lines, drawn by dims.js over the whole sheet (look B, 18 Nov 2026). */
+.sheet { position: relative; padding-bottom: 48px; }
+svg.dims { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; z-index: 2; }
+svg.dims line { stroke: var(--dimc); stroke-width: 1; }
+svg.dims text { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 11px; fill: var(--dimc); letter-spacing: 0.04em; }
+.games { margin-top: 46px; }
+
+/* The trailer pop-up (look B, 18 Nov 2026), opened by site.js. */
+dialog.player {
+  padding: 0; width: min(960px, calc(100vw - 32px)); max-width: none;
+  background: var(--paper); color: var(--ink);
+  border: 3px solid var(--ink); outline: 1px solid var(--paper); outline-offset: 5px;
+}
+dialog.player::backdrop { background: rgba(20, 20, 20, 0.72); }
+.player-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 10px 16px; border-bottom: 2px solid var(--ink); }
+.player-head .tabs { display: flex; margin-left: 4px; }
+.player-head .tabs:empty { display: none; }
+.player-head .tab {
+  cursor: pointer; background: transparent; color: var(--ink);
+  font-family: "IBM Plex Mono", Consolas, monospace; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+  border: 2px solid var(--ink); padding: 5px 12px;
+}
+.player-head .tab + .tab { border-left: none; }
+.player-head .tab[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.player-head .tab:hover, .player-head .tab:focus-visible { color: var(--red); }
+.player-head .tab[aria-pressed="true"]:hover, .player-head .tab[aria-pressed="true"]:focus-visible { color: var(--paper); }
+.player-head .lbl { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.1em; }
+.player-head b { font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 500; font-size: 21px; letter-spacing: 0.05em; text-transform: uppercase; }
+.player-head .close {
+  margin-left: auto; cursor: pointer; background: transparent; color: var(--ink);
+  font-family: "IBM Plex Mono", Consolas, monospace; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+  border: 2px solid var(--ink); padding: 5px 10px;
+}
+.player-head .close:hover, .player-head .close:focus-visible { background: var(--ink); color: var(--paper); }
+.player .video { aspect-ratio: 16 / 9; background: #000; }
+.player .video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+/* The Load Path press kit, press/load-path/ (look A, chosen 18 Nov 2026). */
+.pk-title {
+  font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 700; font-size: 46px; line-height: 1.12;
+  letter-spacing: 0.03em; text-transform: uppercase; text-align: center; margin: 4px 0 6px;
+}
+.pk-line { text-align: center; font-size: 20px; margin: 0 0 46px; }
+.pk-hero { position: relative; border: 2px solid var(--ink); background: #16202c; }
+.pk-hero .bg { display: block; width: 100%; height: auto; }
+.pk-hero .logo { position: absolute; left: 3%; top: 50%; width: 34%; height: auto; transform: translateY(-50%); }
+.pk-actions { text-align: center; margin: 22px 0 0; }
+.pk-actions .btn { margin: 0 6px 8px; }
+.box h3 {
+  font-family: "IBM Plex Mono", Consolas, monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin: 22px 0 8px;
+}
+.box h3:first-child { margin-top: 0; }
+.box h4 {
+  font-family: "Oswald", "Arial Narrow", sans-serif; font-weight: 500; font-size: 17px; letter-spacing: 0.08em;
+  text-transform: uppercase; margin: 20px 0 4px;
+}
+.box ul { margin: 0 0 12px; padding-left: 22px; }
+.box .lead { font-size: 19px; }
+.note { margin: 12px 0 0; font-size: 15px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.span2 { grid-column: span 2; }
+.span3 { grid-column: 1 / -1; }
+.gap-top { margin-top: 26px; }
+.tile { margin: 0; }
+.tile .pic { display: block; border: 2px solid var(--ink); background: var(--card); }
+.tile .pic img, .tile video.pic { display: block; width: 100%; height: auto; }
+.tile .pic.light, .tile .pic.dark, .tile .pic.icon { padding: 12px; }
+.tile .pic.light, .tile .pic.icon { background: var(--paper); }
+.tile .pic.dark { background: var(--ink); }
+.tile .pic.icon img { width: 50%; margin: 0 auto; image-rendering: pixelated; }
+/* The logo row: four tiles of one size, pictures fitted inside */
+.grid4 .pic { aspect-ratio: 16 / 9; }
+.grid4 .pic img, .grid4 .pic.icon img { width: 100%; height: 100%; object-fit: contain; }
+.tile .pic.empty {
+  aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; padding: 12px;
+  background: rgba(255, 255, 255, 0.45); border-style: dashed;
+}
+.tile figcaption {
+  display: flex; justify-content: space-between; gap: 4px 10px; flex-wrap: wrap; padding-top: 7px;
+  font-family: "IBM Plex Mono", Consolas, monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+.tile figcaption b { color: var(--ink); font-weight: 600; }
+.tile figcaption a { color: var(--ink); text-underline-offset: 3px; }
+.tile figcaption a + a { margin-left: 10px; }
+.tile figcaption a:hover { color: var(--red); }
+.poster { position: relative; display: block; border: 2px solid var(--ink); }
+.poster img { display: block; width: 100%; height: auto; }
+.poster .play {
+  position: absolute; left: 50%; top: 50%; width: 96px; height: 96px; transform: translate(-50%, -50%);
+  border-radius: 50%; background: rgba(244, 241, 232, 0.95); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+}
+.poster .play::after {
+  content: ""; position: absolute; left: 36px; top: 27px; border-style: solid; border-width: 19px 0 19px 30px;
+  border-color: transparent transparent transparent var(--ink);
+}
+.poster:hover .play, .poster:focus-visible .play { background: var(--red); }
+.video-buttons { margin: 14px 0 0; }
+.photo-slot { margin: 14px 0 0; }
+/* A fifth title-block cell for the sheet's title */
+.titleblock.five { grid-template-columns: 1.5fr 1.7fr 0.8fr 0.8fr 0.8fr; }
+
+/* Mailing-list sign-up (look A, chosen 18 Nov 2026). The form posts straight to Kit. */
+.signup { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 12px 36px; align-items: center; }
+.signup .pitch { font-size: 19px; margin: 0; }
+.signup .small, .signup .note { grid-column: 1 / -1; }
+.signup .small { font-size: 14px; color: var(--muted); margin: 0; }
+.signup .note { margin: 0; }
+.signup-form { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+.signup-form input {
+  flex: 1 1 220px; min-width: 0; font-family: "IBM Plex Mono", Consolas, monospace; font-size: 15px;
+  padding: 10px 12px; border: 2px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink);
+}
+.signup-form input:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.signup-form .btn { margin: 0; cursor: pointer; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+/* The page Kit sends new subscribers to (thanks/) */
+.thanks { max-width: 760px; margin: 50px auto 0; }
+.thanks .btn { margin-top: 6px; }
+
+/* Words still to be written. Nothing marked like this should go live. */
+.todo { background: var(--todo); outline: 1px dashed #b49b00; padding: 1px 4px; }
+.todo::before {
+  content: "PLACEHOLDER"; font-family: "IBM Plex Mono", Consolas, monospace; font-size: 11px; letter-spacing: 0.1em;
+  background: var(--ink); color: var(--paper); padding: 1px 6px; margin-right: 6px; vertical-align: 2px;
+}
+
+/* Phones and small tablets */
+@media (max-width: 820px) {
+  body { font-size: 16px; }
+  .sheet { margin: 12px; padding: 0 16px 44px; outline-offset: 3px; }
+  .top { padding: 18px 0 14px; }
+  .wordmark { font-size: 30px; }
+  .top nav a { margin-left: 18px; font-size: 13px; }
+  .intro { font-size: 19px; }
+  h2 { margin-top: 40px; font-size: 23px; }
+  .games, .two { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .two h2 { margin-top: 40px; }
+  .card h3 { font-size: 24px; }
+  .facts th, .facts td { display: block; width: auto; }
+  .facts th { border-bottom: none; padding: 9px 0 0; }
+  .facts td { padding: 2px 0 9px; }
+  .titleblock { grid-template-columns: 1fr 1fr; }
+  .titleblock div:nth-child(3) { border-left: none; }
+  .titleblock div:nth-child(n+3) { border-top: 1px solid var(--ink); }
+  .signup { grid-template-columns: minmax(0, 1fr); }
+  /* Press kit */
+  .pk-title { font-size: 30px; }
+  .pk-line { font-size: 17px; margin-bottom: 40px; }
+  .grid4, .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .span2, .span3 { grid-column: 1 / -1; }
+  .poster .play { width: 64px; height: 64px; }
+  .poster .play::after { left: 24px; top: 18px; border-width: 13px 0 13px 20px; }
+  .titleblock.five { grid-template-columns: 1fr 1fr; }
+  .titleblock.five div:nth-child(5) { border-left: none; grid-column: 1 / -1; }
+}
+
+/* Phones: the press kit's pictures one to a row */
+@media (max-width: 520px) {
+  .grid3 { grid-template-columns: minmax(0, 1fr); }
+}
